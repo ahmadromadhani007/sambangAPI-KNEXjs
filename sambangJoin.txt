@@ -1,0 +1,82 @@
+{
+  "pertemuan": {
+    "id": 1,
+    "batas_sambang": 1,
+    "batas_tamu": 2,
+    "waktu": 120 // menit
+  },
+  "reservasi": [
+    {
+      "id": 1,
+      "no_mahrom": "2110000001",
+      "id_hari": 6,
+      "id_shift": 1,
+      "tgl_reservasi": "2022-02-03",
+      "tgl_kunjungan": "2022-02-05",
+      "jam_mulai": "1644028745", // Unix Timestamp
+      "jam_selesai": "1644035945", // Unix Timestamp
+      "hadir": "1",
+      "reservasi_wali": [
+          {
+              "id": 1,
+              "wali": {
+                  "id": 1,
+                  "nama_wali": "Samsul",
+                  "nik": 35131200000001,
+                  "status": "Ayah"
+              }
+          }
+      ],
+      "reservasi_santri": [
+          {
+              "id": 1,
+              "santri": {
+                  "id": 1,
+                  "nama": "Alfad",
+                  "no_mahrom": 2110000001,
+                  "status": "Santri",
+                  "wilayah": {
+                      "nama_wilayah": "Zaid bin Tsabit"
+                  }
+              }
+          }
+      ]
+    }
+    {
+      "id": 2,
+      "no_mahrom": "2110000002",
+      "id_hari": 6,
+      "id_shift": 1,
+      "tgl_reservasi": "2022-02-03",
+      "tgl_kunjungan": "2022-02-05",
+      "jam_mulai": "1644028745", // Unix Timestamp
+      "jam_selesai": "1644035945", // Unix Timestamp
+      "hadir": "1",
+      "reservasi_wali": [
+          {
+              "id": 1,
+              "wali": {
+                  "id": 1,
+                  "nama_wali": "Samsul",
+                  "nik": 35131200000001,
+                  "status": "Ayah"
+              }
+          }
+      ],
+      "reservasi_santri": [
+          {
+              "id": 1,
+              "santri": {
+                  "id": 1,
+                  "nama": "Alfad",
+                  "no_mahrom": 2110000001,
+                  "status": "Santri",
+                  "wilayah": {
+                      "nama_wilayah": "Zaid bin Tsabit"
+                  }
+              }
+          }
+      ]
+    }
+  ]
+}
