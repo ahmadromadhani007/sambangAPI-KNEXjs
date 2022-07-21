@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     return res.status(200).json({
       status: 1,
       message: "Success",
-      result: result,
+      data: result,
     });
   } catch (error) {
     return res.status(500).json({
@@ -65,7 +65,7 @@ router.get("/:id_shift", async (req, res) => {
       return res.status(200).json({
         status: 1,
         message: "Success",
-        result: result,
+        data: result,
       });
     } else {
       return res.status(400).json({
