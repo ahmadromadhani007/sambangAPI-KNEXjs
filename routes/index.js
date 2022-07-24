@@ -8,13 +8,13 @@ router.use("/santri", require("./santri"));
 router.use("/wilayah", require("./wilayah"));
 router.use("/lembaga", require("./lembaga"));
 router.use("/informasi", require("./informasi"));
+router.use("/pertemuan", require("./pertemuan"));
+router.use("/jenis-mahrom", require("./jenis_mahrom"));
 
 router.use("/controller", require("./detail_reservasi_santri"));
 router.use("/controller", require("./detail_reservasi_wali"));
-router.use("/controller", require("./jenis_mahrom"));
 router.use("/controller", require("./mahrom"));
 router.use("/controller", require("./pengurus"));
-router.use("/controller", require("./pertemuan"));
 router.use("/controller", require("./reservasi"));
 
 module.exports = router;
