@@ -7,7 +7,7 @@ const database = require("../config/database");
 router.post("/", async (req, res) => {
   const schema = {
     nama_informasi: { type: "string", min: 3, max: 255 },
-    detail_informasi: { type: "string", min: 3, max: 255 },
+    detail_informasi: { type: "string" },
     tanggal_mulai: { type: "string", min: 3, max: 255 },
     tanggal_akhir: { type: "string", min: 3, max: 255 },
     status: { type: "string", min: 3, max: 255 },

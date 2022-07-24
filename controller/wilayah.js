@@ -40,13 +40,13 @@ router.get("/", async (req, res) => {
   try {
     const result = await database("wilayah").select("*");
     return res.status(200).json({
-      status: 1,
+      status: true,
       message: "Success",
       data: result,
     });
   } catch (error) {
     return res.status(400).json({
-      status: 0,
+      status: false,
       message: error.message,
     });
   }
