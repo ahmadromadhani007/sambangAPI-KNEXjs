@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/wilayah/create', async(req, res) => {
+router.post('/wilayah', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/wilayah/all', async(req, res) => {
     }
 });
 
-router.get('/wilayah/one/:id_wilayah', async(req, res) => {
+router.get('/wilayah/:id_wilayah', async(req, res) => {
     try {
         const result = await database("wilayah").select('*').where('id_wilayah', req.params.id_wilayah).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/wilayah/one/:id_wilayah', async(req, res) => {
     }
 });
 
-router.put('/wilayah/edit/:id_wilayah', async(req, res) => {
+router.put('/wilayah/:id_wilayah', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('wilayah').where('id_wilayah', req.params.id_wilayah).first();

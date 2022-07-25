@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/pertemuan/create', async(req, res) => {
+router.post('/pertemuan', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/pertemuan/all', async(req, res) => {
     }
 });
 
-router.get('/pertemuan/one/:id_pertemuan', async(req, res) => {
+router.get('/pertemuan/:id_pertemuan', async(req, res) => {
     try {
         const result = await database("pertemuan").select('*').where('id_pertemuan', req.params.id_pertemuan).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/pertemuan/one/:id_pertemuan', async(req, res) => {
     }
 });
 
-router.put('/pertemuan/edit/:id_pertemuan', async(req, res) => {
+router.put('/pertemuan/:id_pertemuan', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('pertemuan').where('id_pertemuan', req.params.id_pertemuan).first();

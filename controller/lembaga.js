@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/lembaga/create', async(req, res) => {
+router.post('/lembaga', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/lembaga/all', async(req, res) => {
     }
 });
 
-router.get('/lembaga/one/:id_lembaga', async(req, res) => {
+router.get('/lembaga/:id_lembaga', async(req, res) => {
     try {
         const result = await database("lembaga").select('*').where('id_lembaga', req.params.id_lembaga).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/lembaga/one/:id_lembaga', async(req, res) => {
     }
 });
 
-router.put('/lembaga/edit/:id_lembaga', async(req, res) => {
+router.put('/lembaga/:id_lembaga', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('lembaga').where('id_lembaga', req.params.id_lembaga).first();

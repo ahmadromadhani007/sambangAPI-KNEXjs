@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/hari/create', async(req, res) => {
+router.post('/hari', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/hari/all', async(req, res) => {
     }
 });
 
-router.get('/hari/one/:id_hari', async(req, res) => {
+router.get('/hari/:id_hari', async(req, res) => {
     try {
         const result = await database("hari").select('*').where('id_hari', req.params.id_hari).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/hari/one/:id_hari', async(req, res) => {
     }
 });
 
-router.put('/hari/edit/:id_hari', async(req, res) => {
+router.put('/hari/:id_hari', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('hari').where('id_hari', req.params.id_hari).first();

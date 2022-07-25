@@ -16,7 +16,7 @@
       "jam_mulai": "1644028745", // Unix Timestamp
       "jam_selesai": "1644035945", // Unix Timestamp
       "hadir": "1",
-      "reservasi_wali": [
+      "detail_reservasi_wali": [
           {
               "id": 1,
               "wali": {
@@ -27,7 +27,7 @@
               }
           }
       ],
-      "reservasi_santri": [
+      "detail_reservasi_santri": [
           {
               "id": 1,
               "santri": {
@@ -52,7 +52,7 @@
       "jam_mulai": "1644028745", // Unix Timestamp
       "jam_selesai": "1644035945", // Unix Timestamp
       "hadir": "1",
-      "reservasi_wali": [
+      "detail_reservasi_wali": [
           {
               "id": 1,
               "wali": {
@@ -63,7 +63,7 @@
               }
           }
       ],
-      "reservasi_santri": [
+      "detail_reservasi_santri": [
           {
               "id": 1,
               "santri": {

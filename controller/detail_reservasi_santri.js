@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/detail_reservasi_santri/create', async(req, res) => {
+router.post('/detail_reservasi_santri', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/detail_reservasi_santri/all', async(req, res) => {
     }
 });
 
-router.get('/detail_reservasi_santri/one/:id_detail_reservasi_santri', async(req, res) => {
+router.get('/detail_reservasi_santri/:id_detail_reservasi_santri', async(req, res) => {
     try {
         const result = await database("detail_reservasi_santri").select('*').where('id_detail_reservasi_santri', req.params.id_detail_reservasi_santri).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/detail_reservasi_santri/one/:id_detail_reservasi_santri', async(req
     }
 });
 
-router.put('/detail_reservasi_santri/edit/:id_detail_reservasi_santri', async(req, res) => {
+router.put('/detail_reservasi_santri/:id_detail_reservasi_santri', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('detail_reservasi_santri').where('id_detail_reservasi_santri', req.params.id_detail_reservasi_santri).first();

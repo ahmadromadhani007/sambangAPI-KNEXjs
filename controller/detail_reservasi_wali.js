@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/detail_reservasi_wali/create', async(req, res) => {
+router.post('/detail_reservasi_wali', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/detail_reservasi_wali/all', async(req, res) => {
     }
 });
 
-router.get('/detail_reservasi_wali/one/:id_detail_reservasi_wali', async(req, res) => {
+router.get('/detail_reservasi_wali/:id_detail_reservasi_wali', async(req, res) => {
     try {
         const result = await database("detail_reservasi_wali").select('*').where('id_detail_reservasi_wali', req.params.id_detail_reservasi_wali).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/detail_reservasi_wali/one/:id_detail_reservasi_wali', async(req, re
     }
 });
 
-router.put('/detail_reservasi_wali/edit/:id_detail_reservasi_wali', async(req, res) => {
+router.put('/detail_reservasi_wali/:id_detail_reservasi_wali', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('detail_reservasi_wali').where('id_detail_reservasi_wali', req.params.id_detail_reservasi_wali).first();

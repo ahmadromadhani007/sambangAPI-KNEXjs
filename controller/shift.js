@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/shift/create', async(req, res) => {
+router.post('/shift', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/shift/all', async(req, res) => {
     }
 });
 
-router.get('/shift/one/:id_shift', async(req, res) => {
+router.get('/shift/:id_shift', async(req, res) => {
     try {
         const result = await database("shift").select('*').where('id_shift', req.params.id_shift).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/shift/one/:id_shift', async(req, res) => {
     }
 });
 
-router.put('/shift/edit/:id_shift', async(req, res) => {
+router.put('/shift/:id_shift', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('shift').where('id_shift', req.params.id_shift).first();

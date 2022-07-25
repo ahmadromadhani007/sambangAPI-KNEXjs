@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../config/database');
 
-router.post('/mahrom/create', async(req, res) => {
+router.post('/mahrom', async(req, res) => {
     const data = req.body;
     const input = {
         ...data
@@ -49,7 +49,7 @@ router.get('/mahrom/all', async(req, res) => {
     }
 });
 
-router.get('/mahrom/one/:id_mahrom', async(req, res) => {
+router.get('/mahrom/:id_mahrom', async(req, res) => {
     try {
         const result = await database("mahrom").select('*').where('id_mahrom', req.params.id_mahrom).first();
         if (result) {
@@ -73,7 +73,7 @@ router.get('/mahrom/one/:id_mahrom', async(req, res) => {
     }
 });
 
-router.put('/mahrom/edit/:id_mahrom', async(req, res) => {
+router.put('/mahrom/:id_mahrom', async(req, res) => {
     const data = req.body;
     try {
         const result = await database('mahrom').where('id_mahrom', req.params.id_mahrom).first();
