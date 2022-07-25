@@ -47,15 +47,21 @@ router.get("/", async (req, res) => {
     const result = await database("santri")
       .join("wilayah", "wilayah.id_wilayah", "=", "santri.id_wilayah")
       .join("lembaga", "lembaga.id_lembaga", "=", "santri.id_lembaga")
-      .select("santri.*", "wilayah.nama_wilayah", "lembaga.nama_lembaga");
+      .join("mahrom", "mahrom.id_mahrom", "=", "santri.id_mahrom")
+      .select(
+        "santri.*",
+        "wilayah.nama_wilayah",
+        "lembaga.nama_lembaga",
+        "mahrom.nama_mahrom"
+      );
     return res.status(200).json({
-      status: 1,
+      success: true,
       message: "Success",
       data: result,
     });
   } catch (error) {
     return res.status(400).json({
-      status: 0,
+      success: false,
       message: error.message,
     });
   }
@@ -66,8 +72,14 @@ router.get("/:id_santri", async (req, res) => {
     const result = await database("santri")
       .join("wilayah", "wilayah.id_wilayah", "=", "santri.id_wilayah")
       .join("lembaga", "lembaga.id_lembaga", "=", "santri.id_lembaga")
-      .select("santri.*", "wilayah.nama_wilayah", "lembaga.nama_lembaga")
-      .where("id_santri", req.params.id_santri)
+      .join("mahrom", "mahrom.id_mahrom", "=", "santri.id_mahrom")
+      .select(
+        "santri.*",
+        "wilayah.nama_wilayah",
+        "lembaga.nama_lembaga",
+        "mahrom.nama_mahrom"
+      )
+      .where("santri.id_santri", req.params.id_santri)
       .first();
     if (result) {
       return res.status(200).json({
