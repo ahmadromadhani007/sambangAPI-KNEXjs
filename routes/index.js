@@ -1,18 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.use("/",require('./detail_reservasi_santri'));
-router.use("/",require('./detail_reservasi_wali'));
-router.use("/",require('./hari'));
-router.use("/",require('./informasi'));
-router.use("/",require('./jenis_mahrom'));
-router.use("/",require('./lembaga'));
-router.use("/",require('./mahrom'));
-router.use("/",require('./pengurus'));
-router.use("/",require('./pertemuan'));
-router.use("/",require('./reservasi'));
-router.use("/",require('./santri'));
-router.use("/",require('./shift'));
-router.use("/",require('./wilayah'));
+// Master Data
+router.use("/hari", require("./hari"));
+router.use("/shift", require("./shift"));
+router.use("/santri", require("./santri"));
+router.use("/wilayah", require("./wilayah"));
+router.use("/lembaga", require("./lembaga"));
+router.use("/informasi", require("./informasi"));
+router.use("/pertemuan", require("./pertemuan"));
+router.use("/jenis-mahrom", require("./jenis_mahrom"));
+router.use("/mahrom", require("./mahrom"));
+
+router.use("/controller", require("./detail_reservasi_santri"));
+router.use("/controller", require("./detail_reservasi_wali"));
+router.use("/controller", require("./pengurus"));
+router.use("/controller", require("./reservasi"));
 
 module.exports = router;
