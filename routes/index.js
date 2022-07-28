@@ -12,8 +12,8 @@ router.use("/pertemuan", require("./pertemuan"));
 router.use("/jenis-mahrom", require("./jenis_mahrom"));
 router.use("/mahrom", require("./mahrom"));
 
-router.use("/controller", require("./detail_reservasi_santri"));
-router.use("/controller", require("./detail_reservasi_wali"));
+// router.use("/controller", require("./detail_reservasi_santri"));
+// router.use("/controller", require("./detail_reservasi_wali"));
 router.use("/controller", require("./pengurus"));
 router.use("/controller", require("./reservasi"));
 
