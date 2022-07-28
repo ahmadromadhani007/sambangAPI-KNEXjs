@@ -106,58 +106,37 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/mahrom?no_mahrom=2110001", async (req, res) => {
-  const data = req.body;
-  const input = {
-    ...data,
+router.post("/", async (req, res) => {
+  const schema = {
+    nama_shift: { type: "string", min: 3, max: 255 },
+    jam_mulai: { type: "string", min: 3, max: 255 },
+    jam_selesai: { type: "string", min: 3, max: 255 },
+    kapasitas: { type: "number" },
   };
+
+  const check = v.compile(schema);
+
+  const data = check(req.body);
   try {
-    const simpan = await database("mahrom").insert(input);
+    const simpan = await database("shift").insert(req.body);
     if (simpan) {
-      return res.status(200).json({
-        status: 1,
+      return res.status(201).json({
+        success: true,
         message: "Success",
-        result: {
-          id_mahrom: simpan[0],
-          ...input,
-        },
+        data: await database("shift").where("id_shift", simpan[0]).first(),
       });
     } else {
       return res.status(400).json({
-        status: 0,
+        success: false,
         message: "Failed",
       });
     }
   } catch (error) {
-    return res.status(500).json({
-      status: 0,
-      message: error.message,
-    });
-  }
-});
-
-router.get("/mahrom/one/:id_mahrom", async (req, res) => {
-  try {
-    const result = await database("mahrom")
-      .select("*")
-      .where("id_mahrom", req.params.id_mahrom)
-      .first();
-    if (result) {
-      return res.status(200).json({
-        status: 1,
-        message: "Success",
-        result: result,
-      });
-    } else {
-      return res.status(400).json({
-        status: 0,
-        message: "Data not found",
-      });
-    }
-  } catch (error) {
-    return res.status(500).json({
-      status: 0,
-      message: error.message,
+    return res.status(422).json({
+      success: false,
+      message: "Terdapat yang tidak sesuai",
+      error: error.sqlMessage,
+      data: data,
     });
   }
 });
