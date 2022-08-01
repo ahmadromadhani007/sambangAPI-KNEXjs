@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
         .select(
           "mahrom.id_mahrom",
           "mahrom.no_mahrom",
+          "mahrom.no_kk",
           "wali.nik",
           "wali.nama_wali",
           "wali.no_telp"
@@ -39,15 +40,15 @@ router.get("/", async (req, res) => {
           "lembaga.nama_lembaga"
         )
         .where("mahrom.id_mahrom", "=", result.id_mahrom)
-        .andWhere("detail_mahrom.sebagai_wali", "=", "y");
-
-      results.forEach((item, index) => {
-        result.santri = item;
-      });
+        .andWhere("detail_mahrom.sebagai_wali", "=", "y")
+        .then((data) => {
+          result.santri = data;
+          return result;
+        });
       return res.status(200).json({
         status: true,
         message: "Success",
-        data: result,
+        data: results,
       });
     } else {
       const result = await database("detail_mahrom")
@@ -56,6 +57,7 @@ router.get("/", async (req, res) => {
         .select(
           "mahrom.id_mahrom",
           "mahrom.no_mahrom",
+          "mahrom.no_kk",
           "wali.nik",
           "wali.nama_wali",
           "wali.no_telp"

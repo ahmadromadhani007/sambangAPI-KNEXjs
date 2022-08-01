@@ -47,13 +47,7 @@ router.get("/", async (req, res) => {
     const result = await database("santri")
       .join("wilayah", "wilayah.id_wilayah", "=", "santri.id_wilayah")
       .join("lembaga", "lembaga.id_lembaga", "=", "santri.id_lembaga")
-      .join("mahrom", "mahrom.id_mahrom", "=", "santri.id_mahrom")
-      .select(
-        "santri.*",
-        "wilayah.nama_wilayah",
-        "lembaga.nama_lembaga",
-        "mahrom.nama_mahrom"
-      );
+      .select("santri.*", "wilayah.nama_wilayah", "lembaga.nama_lembaga");
     return res.status(200).json({
       success: true,
       message: "Success",
