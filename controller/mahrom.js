@@ -1,6 +1,8 @@
 const e = require("express");
 const express = require("express");
 const router = express.Router();
+const Validator = require("fastest-validator");
+const v = new Validator();
 const database = require("../config/database");
 
 router.get("/", async (req, res) => {
@@ -110,34 +112,66 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const schema = {
-    nama_shift: { type: "string", min: 3, max: 255 },
-    jam_mulai: { type: "string", min: 3, max: 255 },
-    jam_selesai: { type: "string", min: 3, max: 255 },
-    kapasitas: { type: "number" },
+    no_mahrom: { type: "string", min: 1, max: 10 },
+    no_kk: { type: "string", min: 1, max: 10 },
+    id_wali: { type: "number" },
+    keluarga: {
+      type: "array",
+      items: {
+        type: "object",
+        props: {
+          id_wali: { type: "number" },
+          sebagai_wali: { type: "string", empty: false },
+        },
+      },
+    },
+    santri: {
+      type: "array",
+      min: 1,
+      items: {
+        type: "number",
+        positive: true,
+        integer: true,
+      },
+    },
   };
 
   const check = v.compile(schema);
 
   const data = check(req.body);
   try {
-    const simpan = await database("shift").insert(req.body);
-    if (simpan) {
-      return res.status(201).json({
-        success: true,
-        message: "Success",
-        data: await database("shift").where("id_shift", simpan[0]).first(),
-      });
-    } else {
-      return res.status(400).json({
-        success: false,
-        message: "Failed",
-      });
+    const mahrom = {
+      no_mahrom: req.body.no_mahrom,
+      no_kk: req.body.no_kk,
+      id_wali: req.body.id_wali,
+    };
+
+    const result = await database("mahrom").insert(mahrom);
+
+    const id_mahrom = result[0];
+
+    for (let i = 0; i < req.body.santri.length; i++) {
+      for (let j = 0; j < req.body.keluarga.length; j++) {
+        const detail = {
+          id_mahrom: id_mahrom,
+          id_santri: req.body.santri[i],
+          id_wali: req.body.keluarga[j].id_wali,
+          sebagai_wali: req.body.keluarga[j].sebagai_wali,
+        };
+
+        await database("detail_mahrom").insert(detail);
+      }
     }
+
+    return res.status(201).json({
+      success: true,
+      message: "Success",
+    });
   } catch (error) {
     return res.status(422).json({
       success: false,
       message: "Terdapat yang tidak sesuai",
-      error: error.sqlMessage,
+      error: error,
       data: data,
     });
   }
